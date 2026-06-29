@@ -21,7 +21,7 @@ import { formatKcal, formatUsd, record, useSavings } from "@dopaminesim/savings"
 import type { CourierMapProps } from "@dopaminesim/map";
 import { FEES, RESTAURANTS, findRestaurant, type Dish, type Restaurant } from "@/data/catalog";
 
-const PORTAL_URL = process.env.NEXT_PUBLIC_PORTAL_URL ?? "http://localhost:3000";
+const PORTAL_URL = "/";
 
 // Load the map (and maplibre) only on the client — it touches `window` on import.
 const CourierMap = dynamic<CourierMapProps>(

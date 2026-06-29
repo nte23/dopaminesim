@@ -6,11 +6,12 @@
 @source "../../../../packages/map/src/**/*.{ts,tsx}";
 
 /*
- * Per-app re-skin. FauxEats overrides the shared semantic tokens to a warm
- * "hot delivery" palette — same component library, a distinct look. This is
- * exactly the mechanism that lets each of the 20+ sub-apps feel different.
+ * Per-app re-skin without separate deployments. Each sub-app's route group
+ * wraps its subtree in a `.theme-*` class that overrides the shared semantic
+ * tokens — same component library, a distinct look per sub-app, all in one
+ * Next.js app on one origin (so the cross-app "money saved" total is shared).
  */
-:root {
+.theme-fauxeats {
   --background: #fff8f2;
   --foreground: #1d1410;
   --card: #ffffff;

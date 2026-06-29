@@ -1,11 +1,11 @@
 {
-  "name": "@dopaminesim/fauxeats",
+  "name": "@dopaminesim/web",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
+    "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "next start -p 3001",
+    "start": "next start -p 3000",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
   },

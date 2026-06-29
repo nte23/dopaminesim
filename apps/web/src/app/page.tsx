@@ -13,8 +13,6 @@ import {
 } from "lucide-react";
 import { AppTile, Badge, Button, SavingsCounter } from "@dopaminesim/ui";
 
-const FAUXEATS_URL = process.env.NEXT_PUBLIC_FAUXEATS_URL ?? "http://localhost:3001";
-
 type Tile = {
   title: string;
   tagline: string;
@@ -29,7 +27,7 @@ const TILES: Tile[] = [
     tagline: "Order anything. Watch the courier. Eat nothing.",
     icon: Bike,
     status: "live",
-    href: FAUXEATS_URL,
+    href: "/fauxeats",
   },
   { title: "NeverCart", tagline: "Add to cart. Check out. Pay $0.", icon: ShoppingCart, status: "soon" },
   { title: "Unbox It", tagline: "Tap to open the package you didn't buy.", icon: Package, status: "soon" },
@@ -57,7 +55,7 @@ export default function Home() {
           rush is real. The receipt is $0.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a href={FAUXEATS_URL}>
+          <a href="/fauxeats">
             <Button size="lg" variant="primary">
               <Bike className="h-5 w-5" aria-hidden /> Try FauxEats
             </Button>
