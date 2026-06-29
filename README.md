@@ -8,23 +8,56 @@ Inspired by the South Korean "dopamine site" (도파민 사이트) trend that hi
 
 ## Status
 
-Pre-build. Brainstorm & strategy stage.
+Shell + first flagship are **live and running locally**:
 
-📄 **[Read the full strategy memo →](docs/STRATEGY.md)** — Korean phenomenon & news hook, 28 sub-app ideas, legal image sourcing, the Vercel/Turborepo/MapLibre architecture, monetization, and risk guardrails. Based on a 25-agent, fact-checked deep-research run.
+- **`portal`** — the dopaminesim "arcade" home: brand, the cross-app **money-saved counter**, and the app grid.
+- **`fauxeats`** — fake food delivery: browse fictional restaurants → build a cart → checkout with a disabled demo card → watch a courier animate along a real map route → it vanishes → a shareable "you saved $X · Y kcal" receipt that bumps your suite-wide total.
 
-## Core ideas
+📄 **[Read the full strategy memo →](docs/STRATEGY.md)** — Korean phenomenon & news hook, 28 sub-app ideas, legal image sourcing, architecture, monetization, and risk guardrails. Based on a 25-agent, fact-checked deep-research run.
 
-- **Suite, not a single app.** One brand, many fake-interaction toys, sharing a design system and a cross-app **"money saved" counter** ("You've avoided $4,212 in impulse purchases").
-- **Playful, not bleak.** Neal.fun register — satirical, self-aware, built to be screenshotted and shared.
-- **Unmistakably fake.** Fictional brands, demo-only payments, persistent "this is a simulation" disclaimers.
-- **Free first.** Grow on virality; layer ads/light premium only once there's traffic.
+## Getting started
 
-## Planned stack
+```bash
+pnpm install
+pnpm dev          # portal on :3000, fauxeats on :3001
+# or build everything:
+pnpm build
+```
 
-Next.js 15 (App Router) · pnpm + Turborepo monorepo · Tailwind v4 + shadcn/ui · MapLibre GL + static PMTiles · client-side scripted "realtime" (no backend) · Supabase for the few features that need accounts · Vercel hosting.
+Then open <http://localhost:3000> (the arcade) and click **Try FauxEats**.
 
-## Flagships (build order)
+## Monorepo layout
 
-1. **Shell** — monorepo, design system, "money saved" primitive, suite portal
-2. **FauxEats** — fake food delivery with a courier animated along a live map route
-3. **NeverCart** — fake online shopping: browse → cart → checkout → never arrives
+```
+apps/
+  portal/      # dopaminesim.com — the arcade home (Next.js 15)
+  fauxeats/    # flagship fake food-delivery sim (Next.js 15)
+packages/
+  ui/          # shared component library (Button, Card, ReceiptCard, AppTile, SimBanner…)
+  theme/       # Tailwind v4 design tokens; per-app re-skin via CSS variables
+  savings/     # the "money saved" store + useSavings hook (localStorage now, Supabase-ready)
+  map/         # CourierMap — MapLibre + a courier animated along a route
+```
+
+## Stack
+
+Next.js 15 (App Router) · pnpm + Turborepo monorepo · Tailwind v4 + a small shadcn-style UI kit · MapLibre GL with an inline raster style (swap for self-hosted PMTiles in production) · client-side scripted "realtime" (no backend, no websockets) · Vercel-ready.
+
+### Design notes
+
+- **One component library, N looks.** `packages/theme` defines semantic tokens as CSS variables and Tailwind v4 `@theme inline`; each app overrides `:root` to re-skin (the portal is hot-pink, FauxEats is delivery-orange) without forking components.
+- **The map is a simulation.** The courier is animated client-side with `@turf/along` + `requestAnimationFrame` over a synthesized route — no routing API, no websockets, no key. It renders even if the basemap provider is unreachable.
+- **The money-saved spine.** Every fake order calls `record({ usd, kcal })` in `packages/savings`. The total persists locally and is built to sync to an account later — it's the cross-app progression and the harm-reduction framing (a fun stat, never a clinical claim).
+
+### Guardrails (kept unmistakably fake)
+
+- A persistent "Simulation — nothing is bought, charged, or delivered" banner on every page.
+- No real payment fields — the checkout shows a disabled demo card.
+- Fictional brands only (no real logos/trademarks), which is also the legal-safe path for imagery.
+
+## Configuration
+
+Optional env vars (cross-linking the apps when not on localhost):
+
+- `NEXT_PUBLIC_FAUXEATS_URL` (portal → fauxeats link), default `http://localhost:3001`
+- `NEXT_PUBLIC_PORTAL_URL` (fauxeats → portal link), default `http://localhost:3000`

@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@import "../../../../packages/theme/tokens.css";
+
+/* Scan the shared component library so its utility classes get generated. */
+@source "../../../../packages/ui/src/**/*.{ts,tsx}";

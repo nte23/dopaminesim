@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@import "../../../../packages/theme/tokens.css";
+
+/* Scan the shared packages so their utility classes get generated. */
+@source "../../../../packages/ui/src/**/*.{ts,tsx}";
+@source "../../../../packages/map/src/**/*.{ts,tsx}";
+
+/*
+ * Per-app re-skin. FauxEats overrides the shared semantic tokens to a warm
+ * "hot delivery" palette — same component library, a distinct look. This is
+ * exactly the mechanism that lets each of the 20+ sub-apps feel different.
+ */
+:root {
+  --background: #fff8f2;
+  --foreground: #1d1410;
+  --card: #ffffff;
+  --card-foreground: #1d1410;
+  --muted: #ffe9da;
+  --muted-foreground: #927261;
+  --border: #ffe0cc;
+  --input: #ffe0cc;
+  --ring: #ff5a1f;
+
+  --primary: #ff5a1f;
+  --primary-foreground: #ffffff;
+  --secondary: #0e7c7b;
+  --secondary-foreground: #ffffff;
+  --accent: #ffd23f;
+  --accent-foreground: #1d1410;
+}
