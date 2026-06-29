@@ -1,4 +1,4 @@
-import * as React from "react";
+import { ArrowRight, type LucideIcon } from "lucide-react";
 import { cn } from "./lib/cn";
 import { Badge } from "./badge";
 
@@ -11,14 +11,14 @@ export type AppStatus = "live" | "soon";
 export function AppTile({
   title,
   tagline,
-  emoji,
+  icon: Icon,
   href,
   status = "soon",
   className,
 }: {
   title: string;
   tagline: string;
-  emoji: string;
+  icon: LucideIcon;
   href?: string;
   status?: AppStatus;
   className?: string;
@@ -35,14 +35,10 @@ export function AppTile({
   const inner = (
     <>
       <div className="flex items-start justify-between">
-        <span className="text-4xl" aria-hidden>
-          {emoji}
+        <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-foreground">
+          <Icon className="h-6 w-6" strokeWidth={2} aria-hidden />
         </span>
-        {live ? (
-          <Badge variant="success">live</Badge>
-        ) : (
-          <Badge variant="outline">soon</Badge>
-        )}
+        {live ? <Badge variant="success">live</Badge> : <Badge variant="outline">soon</Badge>}
       </div>
       <div>
         <h3 className="font-display text-lg font-bold leading-tight">{title}</h3>
@@ -50,7 +46,7 @@ export function AppTile({
       </div>
       {live ? (
         <span className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-primary">
-          Open <span aria-hidden>→</span>
+          Open <ArrowRight className="h-4 w-4" aria-hidden />
         </span>
       ) : null}
     </>

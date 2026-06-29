@@ -1,3 +1,16 @@
+import {
+  ArrowRight,
+  BadgeCheck,
+  Banknote,
+  Bike,
+  ChevronsUp,
+  Coffee,
+  Package,
+  ShoppingCart,
+  Sparkles,
+  Wind,
+  type LucideIcon,
+} from "lucide-react";
 import { AppTile, Badge, Button, SavingsCounter } from "@dopaminesim/ui";
 
 const FAUXEATS_URL = process.env.NEXT_PUBLIC_FAUXEATS_URL ?? "http://localhost:3001";
@@ -5,7 +18,7 @@ const FAUXEATS_URL = process.env.NEXT_PUBLIC_FAUXEATS_URL ?? "http://localhost:3
 type Tile = {
   title: string;
   tagline: string;
-  emoji: string;
+  icon: LucideIcon;
   status: "live" | "soon";
   href?: string;
 };
@@ -14,17 +27,17 @@ const TILES: Tile[] = [
   {
     title: "FauxEats",
     tagline: "Order anything. Watch the courier. Eat nothing.",
-    emoji: "🛵",
+    icon: Bike,
     status: "live",
     href: FAUXEATS_URL,
   },
-  { title: "NeverCart", tagline: "Add to cart. Check out. Pay $0.", emoji: "🛒", status: "soon" },
-  { title: "Unbox It", tagline: "Tap to open the package you didn't buy.", emoji: "📦", status: "soon" },
-  { title: "Spend a Billionaire", tagline: "Blow a fortune in 60 seconds.", emoji: "💸", status: "soon" },
-  { title: "Break Room", tagline: "Take a fake break with strangers, live.", emoji: "🛋️", status: "soon" },
-  { title: "Level Up", tagline: "Gain XP for literally existing.", emoji: "🆙", status: "soon" },
-  { title: "Verified", tagline: "Get the blue check you'll never get.", emoji: "✔️", status: "soon" },
-  { title: "Calm Down Corner", tagline: "Bubble wrap, slime, and a fake candle.", emoji: "🫧", status: "soon" },
+  { title: "NeverCart", tagline: "Add to cart. Check out. Pay $0.", icon: ShoppingCart, status: "soon" },
+  { title: "Unbox It", tagline: "Tap to open the package you didn't buy.", icon: Package, status: "soon" },
+  { title: "Spend a Billionaire", tagline: "Blow a fortune in 60 seconds.", icon: Banknote, status: "soon" },
+  { title: "Break Room", tagline: "Take a fake break with strangers, live.", icon: Coffee, status: "soon" },
+  { title: "Level Up", tagline: "Gain XP for literally existing.", icon: ChevronsUp, status: "soon" },
+  { title: "Verified", tagline: "Get the blue check you'll never get.", icon: BadgeCheck, status: "soon" },
+  { title: "Calm Down Corner", tagline: "Bubble wrap, slime, and a fake candle.", icon: Wind, status: "soon" },
 ];
 
 export default function Home() {
@@ -33,7 +46,7 @@ export default function Home() {
       {/* Hero */}
       <section className="flex flex-col items-center pt-14 text-center sm:pt-20">
         <Badge variant="accent" className="mb-5">
-          ✨ all the hit · none of the regret
+          <Sparkles className="h-3.5 w-3.5" aria-hidden /> all the hit · none of the regret
         </Badge>
         <h1 className="font-display text-5xl font-bold leading-[0.95] tracking-tight sm:text-7xl">
           dopamine<span className="text-primary">sim</span>
@@ -46,7 +59,7 @@ export default function Home() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <a href={FAUXEATS_URL}>
             <Button size="lg" variant="primary">
-              🛵 Try FauxEats
+              <Bike className="h-5 w-5" aria-hidden /> Try FauxEats
             </Button>
           </a>
           <a href="#arcade">
@@ -78,7 +91,7 @@ export default function Home() {
               key={tile.title}
               title={tile.title}
               tagline={tile.tagline}
-              emoji={tile.emoji}
+              icon={tile.icon}
               status={tile.status}
               href={tile.href}
             />

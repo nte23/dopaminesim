@@ -53,19 +53,38 @@ export interface CourierMapProps {
   /** raster tile template used by the default inline style */
   tilesUrl?: string;
   routeColor?: string;
-  courierEmoji?: string;
   onProgress?: (fraction: number) => void;
   onVanish?: () => void;
   className?: string;
 }
 
-function emojiMarker(emoji: string, size: number): HTMLDivElement {
+// Lucide (ISC) icon geometry, inlined so markers need no React render pass.
+const ICON_CHEF =
+  '<path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z"/><path d="M6 17h12"/>';
+const ICON_HOUSE =
+  '<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>';
+const ICON_BIKE =
+  '<circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/>';
+
+function iconMarker(
+  inner: string,
+  opts: { bg: string; fg: string; border: string; size: number; icon: number },
+): HTMLDivElement {
   const el = document.createElement("div");
-  el.textContent = emoji;
-  el.style.fontSize = `${size}px`;
-  el.style.lineHeight = "1";
+  el.style.width = `${opts.size}px`;
+  el.style.height = `${opts.size}px`;
+  el.style.display = "flex";
+  el.style.alignItems = "center";
+  el.style.justifyContent = "center";
+  el.style.borderRadius = "9999px";
+  el.style.background = opts.bg;
+  el.style.color = opts.fg;
+  el.style.border = `2px solid ${opts.border}`;
+  el.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
   el.style.userSelect = "none";
-  el.style.filter = "drop-shadow(0 2px 3px rgba(0,0,0,0.35))";
+  el.innerHTML =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${opts.icon}" height="${opts.icon}" viewBox="0 0 24 24" ` +
+    `fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
   return el;
 }
 
@@ -100,7 +119,6 @@ export function CourierMap(props: CourierMapProps) {
     styleUrl,
     tilesUrl = DEFAULT_TILES,
     routeColor = "#ff2d9b",
-    courierEmoji = "🛵",
     onProgress,
     onVanish,
     className,
@@ -159,14 +177,38 @@ export function CourierMap(props: CourierMapProps) {
         paint: { "line-color": routeColor, "line-width": 5, "line-dasharray": [1.4, 1.1] },
       });
 
-      new maplibregl.Marker({ element: emojiMarker("🧑‍🍳", 26), anchor: "bottom" })
+      new maplibregl.Marker({
+        element: iconMarker(ICON_CHEF, {
+          bg: "#ffffff",
+          fg: "#1d1410",
+          border: "#1d1410",
+          size: 34,
+          icon: 18,
+        }),
+        anchor: "bottom",
+      })
         .setLngLat(from)
         .addTo(map);
-      new maplibregl.Marker({ element: emojiMarker("🏠", 26), anchor: "bottom" })
+      new maplibregl.Marker({
+        element: iconMarker(ICON_HOUSE, {
+          bg: "#ffffff",
+          fg: "#1d1410",
+          border: "#1d1410",
+          size: 34,
+          icon: 18,
+        }),
+        anchor: "bottom",
+      })
         .setLngLat(to)
         .addTo(map);
       courierRef.current = new maplibregl.Marker({
-        element: emojiMarker(courierEmoji, 34),
+        element: iconMarker(ICON_BIKE, {
+          bg: routeColor,
+          fg: "#ffffff",
+          border: "#ffffff",
+          size: 40,
+          icon: 22,
+        }),
         anchor: "center",
       })
         .setLngLat(from)

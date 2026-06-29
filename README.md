@@ -13,7 +13,7 @@ Shell + first flagship are **live and running locally**:
 - **`portal`** — the dopaminesim "arcade" home: brand, the cross-app **money-saved counter**, and the app grid.
 - **`fauxeats`** — fake food delivery: browse fictional restaurants → build a cart → checkout with a disabled demo card → watch a courier animate along a real map route → it vanishes → a shareable "you saved $X · Y kcal" receipt that bumps your suite-wide total.
 
-📄 **[Read the full strategy memo →](docs/STRATEGY.md)** — Korean phenomenon & news hook, 28 sub-app ideas, legal image sourcing, architecture, monetization, and risk guardrails. Based on a 25-agent, fact-checked deep-research run.
+**[Read the full strategy memo →](docs/STRATEGY.md)** — Korean phenomenon & news hook, 28 sub-app ideas, legal image sourcing, architecture, monetization, and risk guardrails. Based on a 25-agent, fact-checked deep-research run.
 
 ## Getting started
 
@@ -61,3 +61,19 @@ Optional env vars (cross-linking the apps when not on localhost):
 
 - `NEXT_PUBLIC_FAUXEATS_URL` (portal → fauxeats link), default `http://localhost:3001`
 - `NEXT_PUBLIC_PORTAL_URL` (fauxeats → portal link), default `http://localhost:3000`
+
+## Deploying to Vercel
+
+This is a Turborepo monorepo with **two separate Next.js apps**, so deploy them as **two Vercel projects** — not one project pointed at the repo root. Pointing a project at the repo root is what triggers the **"No Output Directory named 'public' found"** error: Vercel can't tell which app to build, so it falls back to a static-site preset and looks for a `public/` folder.
+
+For **each** app, create a Vercel project from this repo and:
+
+1. Set **Root Directory** to the app folder:
+   - portal → `apps/portal`
+   - fauxeats → `apps/fauxeats`
+2. Leave **Framework Preset = Next.js** (auto-detected once the root directory is the app) and keep Build Command / Output Directory at their defaults. Vercel runs the pnpm-workspace install from the repo root automatically.
+3. Add the cross-link env var so the apps point at each other's deployed URLs:
+   - portal project: `NEXT_PUBLIC_FAUXEATS_URL = https://<your-fauxeats-domain>`
+   - fauxeats project: `NEXT_PUBLIC_PORTAL_URL = https://<your-portal-domain>`
+
+Point `dopaminesim.com` at the portal project; sub-apps can live on subdomains (e.g. `fauxeats.dopaminesim.com`) or be merged under one domain via Next.js Multi-Zones later.

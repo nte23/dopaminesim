@@ -1,3 +1,4 @@
+import { FlaskConical } from "lucide-react";
 import { cn } from "./lib/cn";
 
 /**
@@ -10,7 +11,7 @@ export function SimBanner({ className }: { className?: string }) {
   return (
     <div className={cn("w-full bg-foreground text-background", className)}>
       <p className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-4 py-1.5 text-center text-[0.7rem] font-semibold tracking-wide sm:text-xs">
-        <span aria-hidden>🫧</span>
+        <FlaskConical className="h-3.5 w-3.5 shrink-0" aria-hidden />
         <span>
           Simulation — nothing is bought, charged, or delivered. It&apos;s all fake. That&apos;s the
           point.

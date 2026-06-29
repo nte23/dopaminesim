@@ -39,7 +39,7 @@ Today is **2026-06-29** — the trend is roughly five days into Western virality
 
 **Cultural driver.** Coping for Korean Gen Z facing high costs, stagnant wages, a punishing job market, and loneliness — the ritual "without the receipt" ([The Print](https://theprint.in/feature/young-south-koreans-burnout-loneliness-anxiety/2955246/)).
 
-**⚠️ Data-gap flag (verification: the blanket "no numbers exist" claim was *refuted*).** Primary-source counts *do* exist for two named sites: MoneyToday reported **~30,000 cumulative visitors** for 온라인 담타 ([머니투데이, 2026-04-22](https://www.mt.co.kr/society/2026/04/22/2026042208385329222)); MBC reported **~200–300 daily users** for 음식만안와요 pre-virality ([MBC](https://imnews.imbc.com/replay/2026/nwtoday/article/6816760_37012.html)). But **no verified count exists for the English-branded FoodNeverComes** — its "viral" status is qualitative. Treat the larger damta figures (≈20k daily, ~130k DAU) as **unconfirmed** — they trace to the site's own marketing page.
+**Caution: Data-gap flag (verification: the blanket "no numbers exist" claim was *refuted*).** Primary-source counts *do* exist for two named sites: MoneyToday reported **~30,000 cumulative visitors** for 온라인 담타 ([머니투데이, 2026-04-22](https://www.mt.co.kr/society/2026/04/22/2026042208385329222)); MBC reported **~200–300 daily users** for 음식만안와요 pre-virality ([MBC](https://imnews.imbc.com/replay/2026/nwtoday/article/6816760_37012.html)). But **no verified count exists for the English-branded FoodNeverComes** — its "viral" status is qualitative. Treat the larger damta figures (≈20k daily, ~130k DAU) as **unconfirmed** — they trace to the site's own marketing page.
 
 ---
 
@@ -56,7 +56,7 @@ Today is **2026-06-29** — the trend is roughly five days into Western virality
 
 **Authorship (verification: *supported*).** FoodNeverComes and 음식만안와요 are **one app by one developer** — handle "Malhee" (@malheeelife), named in Korean press as a 21-year-old student. **The "built with ChatGPT / vibe-coding" detail is press-only, not on any primary source** — unverified.
 
-**❌ Do NOT attribute to Korea (verification: category does not exist).** There is **no** named Korean dopamine site for fake stock/crypto trading or idle "raising toys." Those itches are served by generic paper-trading sims and the **US-made** Stimulation Clicker — not the Korean trend.
+**Avoid: Do NOT attribute to Korea (verification: category does not exist).** There is **no** named Korean dopamine site for fake stock/crypto trading or idle "raising toys." Those itches are served by generic paper-trading sims and the **US-made** Stimulation Clicker — not the Korean trend.
 
 ### Western analogues that already work (the proof points)
 
@@ -81,32 +81,32 @@ Today is **2026-06-29** — the trend is roughly five days into Western virality
 
 **Brand tailwind & trap.** "Dopamine" is already primed in the West via "dopamine detox" apps and "dopamine design." It pulls two ways — *detox (abstinence)* vs. *dopamine-as-treat (indulgence)*. Exploit the irony but **avoid being mistaken for a detox/blocker app.**
 
-**Market substrate.** Idle/incremental games are large and monetizing (**~$13.2B in 2025** per report-mill vendors). **⚠️ Verification (*supported* as a caution):** that figure is from DataIntelo, opaque methodology; Sensor Tower/Newzoo publish no comparable aggregate. Directional only — don't put it in a deck without an independent source.
+**Market substrate.** Idle/incremental games are large and monetizing (**~$13.2B in 2025** per report-mill vendors). **Caution: Verification (*supported* as a caution):** that figure is from DataIntelo, opaque methodology; Sensor Tower/Newzoo publish no comparable aggregate. Directional only — don't put it in a deck without an independent source.
 
-**⚠️ neal.fun traffic flag (*supported*).** Figures vary wildly (Semrush ~13.8M, Similarweb ~9.6M, blogs ~4M). Lock to one source + period before citing.
+**Caution: neal.fun traffic flag (*supported*).** Figures vary wildly (Semrush ~13.8M, Similarweb ~9.6M, blogs ~4M). Lock to one source + period before citing.
 
 ---
 
 ## 4. Sub-app IDEA MENU (28 ideas)
 
-Each: hook + the specific dopamine mechanic. ★ = the two flagships to build first (chosen to harden the shared packages — see §6).
+Each: hook + the specific dopamine mechanic. (flagship) = the two flagships to build first (chosen to harden the shared packages — see §6).
 
 ### A. Commerce sims
-1. **NeverCart ★** — "Add everything to cart. Check out. Pay $0. Feel the rush." → Full e-commerce flow + a celebratory "You saved $342" receipt.
+1. **NeverCart (flagship)** — "Add everything to cart. Check out. Pay $0. Feel the rush." → Full e-commerce flow + a celebratory "You saved $342" receipt.
 2. **Wishlist Roulette** — "Spin to 'win' the thing you wanted." → Variable-reward anticipation, no purchase.
 3. **Drop Hype** — "Camp a fake sneaker drop with 4,000 strangers." → Scarcity + countdown + live queue counter.
 4. **Unbox It** — "Tap to open the package you didn't buy." → Unboxing-reveal dopamine, pure animation.
 5. **Refund Simulator** — "Return everything. Watch the money 'come back.'" → Numbers-go-up in reverse.
 
 ### B. Food / delivery sims
-6. **FauxEats ★** — "Order anything. Watch the courier. Eat nothing." → Real-delivery mimicry + a cute courier on a live map + "saved 1,800 kcal" payoff (the flagship Korean mechanic, playful re-skin).
+6. **FauxEats (flagship)** — "Order anything. Watch the courier. Eat nothing." → Real-delivery mimicry + a cute courier on a live map + "saved 1,800 kcal" payoff (the flagship Korean mechanic, playful re-skin).
 7. **Driver Cam** — "Ride along with your fake courier in first person." → ETA bar ticking down is the hit.
 8. **Midnight Snack** — "It's 2am. Order the whole menu. Zero regret." → Late-night impulse ritual + "calories dodged" streak.
 9. **Tip Your Rabbit** — "Send your fake driver a fake tip and a fake 5-star." → Pro-social micro-reward loop.
 10. **Buffet Mode** — "Build the most absurd order. Share the receipt." → Maximalist over-ordering as comedy; share-native receipt.
 
 ### C. Social / relationship sims
-11. **Break Room** (★-candidate) — "A live counter of everyone taking a fake break right now." → Co-presence relief + anonymous one-liners (the 온라인 담타 mechanic; cheapest network-effect moat).
+11. **Break Room** ((flagship)-candidate) — "A live counter of everyone taking a fake break right now." → Co-presence relief + anonymous one-liners (the 온라인 담타 mechanic; cheapest network-effect moat).
 12. **Read Receipts** — "Send a text into the void and watch '…typing.'" → Reply anticipation with no rejection risk.
 13. **Group Chat (You're the Star)** — "A fake group chat that hypes only you." → Validation loop, scripted notifications.
 14. **Standing Ovation** — "Press the button. A crowd roars for you." → Instant social-approval hit.
@@ -148,12 +148,12 @@ There is a **near-zero-cost, clean legal path.**
 
 **Catalog DATA (safe, free):** **Faker** (MIT) for names/prices/menus/addresses; **FakeStoreAPI** / **DummyJSON** (MIT) for structure — but re-host their **images** from a clean source.
 
-**❌ License traps to AVOID:**
+**Avoid: License traps to AVOID:**
 - **Amazon Berkeley Objects (ABO)** — AWS registry lists it **CC BY-NC 4.0 (non-commercial)**; the registry controls — do not use commercially.
 - **DeepFashion** — research-only, signed release.
 - **Paid stock unnecessary.** Adobe Stock API is Enterprise-only since Nov 2024 (*supported*).
 
-**🔴 The dominant legal risk is BRAND/TRADEMARK, not photo licensing.** A stock license does **not** grant rights to logos/trademarks in an image. For an openly-fake suite: **invent fictional brand names (Faker), avoid all real logos, reject any image containing a visible mark or identifiable person, and ship a persistent "simulated/demo app — not a real store; all brands fictional" disclaimer.** Keep a per-image manifest (source, license, URL, date). Statutory damages reach **$150,000/work** for willful infringement.
+**Risk: The dominant legal risk is BRAND/TRADEMARK, not photo licensing.** A stock license does **not** grant rights to logos/trademarks in an image. For an openly-fake suite: **invent fictional brand names (Faker), avoid all real logos, reject any image containing a visible mark or identifiable person, and ship a persistent "simulated/demo app — not a real store; all brands fictional" disclaimer.** Keep a per-image manifest (source, license, URL, date). Statutory damages reach **$150,000/work** for willful infringement.
 
 **Cleanest end-to-end stack:** Faker (data) + Pixabay API (re-hosted, no attribution) + AI for gaps, all under fictional brands with a visible "simulated app" disclaimer. **Licensing cost ≈ $0.** *Have an IP attorney sign off before commercial launch — this is informational, not legal advice.*
 
@@ -177,10 +177,10 @@ There is a **near-zero-cost, clean legal path.**
 
 **The "money saved" data layer.** A tiny `packages/savings` primitive: client-side store (localStorage) for anonymous users, synced to Supabase on login. Every app emits a `saved({ usd, kcal, label })` event; the portal + each app render the running total and a shareable receipt card. This is the cross-app progression that makes "optional accounts" worth having.
 
-**Build order (shell-first, then ★ flagships):**
+**Build order (shell-first, then (flagship) flagships):**
 1. **Shell:** Turborepo scaffold + `packages/ui` (shadcn + Tailwind tokens) + `packages/theme` + `packages/savings` + the **portal/landing** (the suite home, brand, "money saved" global counter).
-2. **FauxEats ★** — exercises `packages/map` (MapLibre + driver animation + route GeoJSON) and proves the savings primitive with kcal + $.
-3. **NeverCart ★** — exercises `packages/ui` (product grid, cart, checkout, Pixabay images, optional Supabase persistence).
+2. **FauxEats (flagship)** — exercises `packages/map` (MapLibre + driver animation + route GeoJSON) and proves the savings primitive with kcal + $.
+3. **NeverCart (flagship)** — exercises `packages/ui` (product grid, cart, checkout, Pixabay images, optional Supabase persistence).
 4. Everything the other ~26 apps need falls out of these two.
 
 ---

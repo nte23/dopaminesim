@@ -2,6 +2,20 @@
 
 import * as React from "react";
 import dynamic from "next/dynamic";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Bike,
+  ChefHat,
+  CreditCard,
+  Ghost,
+  MapPin,
+  Minus,
+  Package,
+  Plus,
+  Star,
+  type LucideIcon,
+} from "lucide-react";
 import { Badge, Button, Card, ReceiptCard, type ReceiptLine } from "@dopaminesim/ui";
 import { formatKcal, formatUsd, record, useSavings } from "@dopaminesim/savings";
 import type { CourierMapProps } from "@dopaminesim/map";
@@ -18,13 +32,14 @@ const CourierMap = dynamic<CourierMapProps>(
 type Step = "browse" | "menu" | "checkout" | "tracking" | "done";
 type Cart = Record<string, number>;
 type CartItem = { dish: Dish; qty: number };
+type TrackStatus = { icon: LucideIcon; text: string };
 
-const TRACK_STATUS: { emoji: string; text: string }[] = [
-  { emoji: "📦", text: "Bagging up a whole lot of nothing…" },
-  { emoji: "🧑‍🍳", text: "A chef is pretending to cook your order" },
-  { emoji: "🛵", text: "Your courier grabbed an imaginary bag" },
-  { emoji: "🛵", text: "On the way — smells like absolutely nothing" },
-  { emoji: "📍", text: "Almost there! Two minutes away…" },
+const TRACK_STATUS: TrackStatus[] = [
+  { icon: Package, text: "Bagging up a whole lot of nothing…" },
+  { icon: ChefHat, text: "A chef is pretending to cook your order" },
+  { icon: Bike, text: "Your courier grabbed an imaginary bag" },
+  { icon: Bike, text: "On the way — smells like absolutely nothing" },
+  { icon: MapPin, text: "Almost there! Two minutes away…" },
 ];
 
 function statusIndex(fraction: number): number {
@@ -164,9 +179,9 @@ function TopBar() {
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-5 py-3">
         <a
           href={PORTAL_URL}
-          className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+          className="inline-flex items-center gap-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
         >
-          ← dopaminesim
+          <ArrowLeft className="h-4 w-4" aria-hidden /> dopaminesim
         </a>
         <span className="font-display text-lg font-bold tracking-tight">
           Faux<span className="text-primary">Eats</span>
@@ -189,27 +204,32 @@ function BrowseView({ onPick }: { onPick: (id: string) => void }) {
         Pick a place, build an order, and watch it never arrive. Keep the money. Keep the calories.
       </p>
       <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {RESTAURANTS.map((r) => (
-          <button
-            key={r.id}
-            onClick={() => onPick(r.id)}
-            className="group flex cursor-pointer flex-col gap-3 rounded-xl border-2 border-border bg-card p-5 text-left shadow-[0_4px_0_0_rgba(0,0,0,0.06)] transition-transform hover:-translate-y-1"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-4xl" aria-hidden>
-                {r.emoji}
-              </span>
-              <Badge variant="muted">⭐ {r.rating.toFixed(1)}</Badge>
-            </div>
-            <div>
-              <h3 className="font-display text-lg font-bold leading-tight">{r.name}</h3>
-              <p className="text-sm text-muted-foreground">
-                {r.cuisine} · {r.eta}
-              </p>
-              <p className="mt-1 text-sm text-muted-foreground">{r.blurb}</p>
-            </div>
-          </button>
-        ))}
+        {RESTAURANTS.map((r) => {
+          const Icon = r.icon;
+          return (
+            <button
+              key={r.id}
+              onClick={() => onPick(r.id)}
+              className="group flex cursor-pointer flex-col gap-3 rounded-xl border-2 border-border bg-card p-5 text-left shadow-[0_4px_0_0_rgba(0,0,0,0.06)] transition-transform hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between">
+                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-primary">
+                  <Icon className="h-6 w-6" aria-hidden />
+                </span>
+                <Badge variant="muted">
+                  <Star className="h-3 w-3 fill-current" aria-hidden /> {r.rating.toFixed(1)}
+                </Badge>
+              </div>
+              <div>
+                <h3 className="font-display text-lg font-bold leading-tight">{r.name}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {r.cuisine} · {r.eta}
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">{r.blurb}</p>
+              </div>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -234,23 +254,25 @@ function MenuView({
   onBack: () => void;
   onCheckout: () => void;
 }) {
+  const RestaurantIcon = restaurant.icon;
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
       <div>
         <button
           onClick={onBack}
-          className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+          className="inline-flex items-center gap-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
         >
-          ← all restaurants
+          <ArrowLeft className="h-4 w-4" aria-hidden /> all restaurants
         </button>
         <div className="mt-3 flex items-center gap-3">
-          <span className="text-4xl" aria-hidden>
-            {restaurant.emoji}
+          <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-primary">
+            <RestaurantIcon className="h-6 w-6" aria-hidden />
           </span>
           <div>
             <h1 className="font-display text-2xl font-bold leading-tight">{restaurant.name}</h1>
-            <p className="text-sm text-muted-foreground">
-              {restaurant.cuisine} · {restaurant.eta} · ⭐ {restaurant.rating.toFixed(1)}
+            <p className="flex items-center gap-1 text-sm text-muted-foreground">
+              {restaurant.cuisine} · {restaurant.eta} · {restaurant.rating.toFixed(1)}
+              <Star className="h-3.5 w-3.5 fill-current" aria-hidden />
             </p>
           </div>
         </div>
@@ -258,12 +280,13 @@ function MenuView({
         <ul className="mt-5 space-y-3">
           {restaurant.dishes.map((dish) => {
             const qty = cart[dish.id] ?? 0;
+            const DishIcon = dish.icon;
             return (
               <li key={dish.id}>
                 <Card className="flex items-center justify-between gap-4 p-4">
                   <div className="flex min-w-0 items-start gap-3">
-                    <span className="text-3xl" aria-hidden>
-                      {dish.emoji}
+                    <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground">
+                      <DishIcon className="h-5 w-5" aria-hidden />
                     </span>
                     <div className="min-w-0">
                       <p className="font-semibold leading-tight">{dish.name}</p>
@@ -281,7 +304,7 @@ function MenuView({
                         onClick={() => onSetQty(dish.id, -1)}
                         aria-label={`Remove one ${dish.name}`}
                       >
-                        −
+                        <Minus className="h-4 w-4" aria-hidden />
                       </Button>
                       <span className="w-5 text-center font-bold tabular-nums">{qty}</span>
                       <Button
@@ -290,7 +313,7 @@ function MenuView({
                         onClick={() => onSetQty(dish.id, 1)}
                         aria-label={`Add one ${dish.name}`}
                       >
-                        +
+                        <Plus className="h-4 w-4" aria-hidden />
                       </Button>
                     </div>
                   ) : (
@@ -334,7 +357,8 @@ function MenuView({
                 </span>
               </div>
               <Button className="mt-4 w-full" size="lg" onClick={onCheckout}>
-                Checkout ({itemCount}) →
+                Checkout ({itemCount})
+                <ArrowRight className="h-4 w-4" aria-hidden />
               </Button>
             </>
           )}
@@ -370,9 +394,9 @@ function CheckoutView({
     <div className="mx-auto max-w-xl">
       <button
         onClick={onBack}
-        className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+        className="inline-flex items-center gap-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
       >
-        ← back to menu
+        <ArrowLeft className="h-4 w-4" aria-hidden /> back to menu
       </button>
       <h1 className="mt-3 font-display text-2xl font-bold">Checkout</h1>
 
@@ -394,14 +418,14 @@ function CheckoutView({
           <Badge variant="outline">demo card · disabled</Badge>
         </div>
         <div className="mt-3 rounded-lg bg-muted p-4 font-mono text-sm">
-          <div className="flex justify-between">
+          <div className="flex items-center justify-between">
             <span>4242 4242 4242 4242</span>
-            <span aria-hidden>💳</span>
+            <CreditCard className="h-5 w-5 text-muted-foreground" aria-hidden />
           </div>
           <div className="mt-2 flex justify-between gap-3 text-muted-foreground">
             <span>DEMO PLAYER</span>
             <span>00 / 00</span>
-            <span>CVC 🙂</span>
+            <span>CVC •••</span>
           </div>
         </div>
         <p className="mt-2 text-xs text-muted-foreground">
@@ -424,7 +448,7 @@ function CheckoutView({
         <SummaryRow label="Subtotal" value={formatUsd(subtotal, { cents: true })} />
         <SummaryRow label="Delivery fee" value={formatUsd(FEES.delivery, { cents: true })} />
         <SummaryRow label="Service fee" value={formatUsd(FEES.service, { cents: true })} />
-        <SummaryRow label="Tip your courier 🛵" value={formatUsd(FEES.tip, { cents: true })} />
+        <SummaryRow label="Tip your courier" value={formatUsd(FEES.tip, { cents: true })} />
         <div className="my-3 border-t-2 border-dashed border-border" />
         <div className="flex justify-between font-display text-lg font-bold">
           <span>Total you won&apos;t pay</span>
@@ -433,7 +457,8 @@ function CheckoutView({
       </Card>
 
       <Button className="mt-5 w-full" size="lg" onClick={onPlace}>
-        Place fake order · {formatUsd(total)} →
+        Place fake order · {formatUsd(total)}
+        <ArrowRight className="h-4 w-4" aria-hidden />
       </Button>
       <p className="mt-2 text-center text-xs text-muted-foreground">
         By placing this order you agree that no order is being placed.
@@ -449,15 +474,16 @@ function TrackingView({
   onVanish,
 }: {
   restaurant: Restaurant;
-  status: { emoji: string; text: string };
+  status: TrackStatus;
   onProgress: (fraction: number) => void;
   onVanish: () => void;
 }) {
+  const StatusIcon = status.icon;
   return (
     <div className="mx-auto max-w-3xl">
       <div className="flex items-center gap-3">
-        <span className="text-3xl" aria-hidden>
-          {status.emoji}
+        <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-muted text-primary">
+          <StatusIcon className="h-6 w-6" aria-hidden />
         </span>
         <div>
           <h1 className="font-display text-xl font-bold leading-tight">{status.text}</h1>
@@ -472,7 +498,6 @@ function TrackingView({
           to={restaurant.to}
           durationMs={15000}
           stopAt={0.92}
-          courierEmoji="🛵"
           routeColor="#ff5a1f"
           onProgress={onProgress}
           onVanish={onVanish}
@@ -503,17 +528,17 @@ function DoneView({
   }));
   return (
     <div className="mx-auto max-w-md text-center">
-      <div className="text-6xl" aria-hidden>
-        🌫️
+      <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-muted text-muted-foreground">
+        <Ghost className="h-10 w-10" aria-hidden />
       </div>
-      <h1 className="mt-3 font-display text-2xl font-bold">Your courier vanished into the void.</h1>
+      <h1 className="mt-4 font-display text-2xl font-bold">Your courier vanished into the void.</h1>
       <p className="mt-2 text-muted-foreground">
         Nothing is coming. That&apos;s the point. Here&apos;s what you saved by not eating it.
       </p>
       <ReceiptCard className="mt-6" usd={total} kcal={totalKcal} lines={lines} brand="FAUXEATS" />
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
         <Button size="lg" onClick={onAgain}>
-          Order more nothing 🛵
+          <Bike className="h-5 w-5" aria-hidden /> Order more nothing
         </Button>
         <a href={PORTAL_URL}>
           <Button size="lg" variant="outline">
