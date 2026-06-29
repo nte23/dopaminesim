@@ -3,6 +3,7 @@ import {
   BadgeCheck,
   Banknote,
   Bike,
+  Briefcase,
   ChevronsUp,
   Coffee,
   Package,
@@ -28,6 +29,13 @@ const TILES: Tile[] = [
     icon: Bike,
     status: "live",
     href: "/fauxeats",
+  },
+  {
+    title: "NeverHired",
+    tagline: "Apply to everything. Get nothing. Feel productive.",
+    icon: Briefcase,
+    status: "live",
+    href: "/neverhired",
   },
   { title: "NeverCart", tagline: "Add to cart. Check out. Pay $0.", icon: ShoppingCart, status: "soon" },
   { title: "Unbox It", tagline: "Tap to open the package you didn't buy.", icon: Package, status: "soon" },
@@ -81,7 +89,7 @@ export default function Home() {
       <section id="arcade" className="mt-20 scroll-mt-6">
         <div className="mb-6 flex items-end justify-between">
           <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">The arcade</h2>
-          <span className="text-sm text-muted-foreground">1 live · more loading…</span>
+          <span className="text-sm text-muted-foreground">2 live · more loading…</span>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {TILES.map((tile) => (

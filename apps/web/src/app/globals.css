@@ -29,3 +29,22 @@
   --accent: #ffd23f;
   --accent-foreground: #1d1410;
 }
+
+.theme-neverhired {
+  --background: #f4f7fb;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --muted: #e8eef7;
+  --muted-foreground: #64748b;
+  --border: #dbe6f3;
+  --input: #dbe6f3;
+  --ring: #2f6fed;
+
+  --primary: #2f6fed;
+  --primary-foreground: #ffffff;
+  --secondary: #4338ca;
+  --secondary-foreground: #ffffff;
+  --accent: #f5b301;
+  --accent-foreground: #0f172a;
+}
