@@ -30,14 +30,19 @@ pnpm build
 
 ```
 apps/
-  web/                       # the whole suite — ONE Next.js app, ONE Vercel project
+  web/                          # the whole suite — ONE Next.js app, ONE Vercel project
     src/app/
-      page.tsx               # arcade home          ->  /
+      page.tsx                  # arcade home               ->  /
       fauxeats/
-        layout.tsx           # applies the orange theme to this route group
-        page.tsx             # FauxEats sim          ->  /fauxeats
-    src/components/           # app-specific components (FauxEats flow)
-    src/data/                 # fictional catalog
+        layout.tsx              # orange theme + cart/location provider
+        page.tsx                # marketplace home          ->  /fauxeats
+        r/[id]/page.tsx         # restaurant detail + menu  ->  /fauxeats/r/:id
+        checkout/page.tsx       # cart, promo, tip, fees    ->  /fauxeats/checkout
+        track/page.tsx          # live phased delivery       ->  /fauxeats/track
+        api/img/route.ts        # Pixabay image proxy (cached, server-side key)
+    src/components/fauxeats/     # provider, customize sheet, boba builder, delivery flow…
+    src/data/                    # fictional restaurants, boba, couriers, finales, ranks, promos
+    src/lib/                     # cart engine, menu types, geo helpers
 packages/
   ui/          # shared component library (Button, Card, ReceiptCard, AppTile, SimBanner…)
   theme/       # Tailwind v4 design tokens; per-app re-skin via CSS variables
@@ -46,6 +51,16 @@ packages/
 ```
 
 Adding a sub-app later = a new folder under `apps/web/src/app/<name>/` with a `layout.tsx` that sets its `.theme-<name>` class. No new project, no new domain.
+
+### FauxEats (the flagship)
+
+A near-real food-delivery sim: pick a delivery location (geolocation or a preset city), browse restaurants with font-wordmark logos, open a restaurant, customize items (pizza toppings, a dedicated bubble-tea **cup builder**, etc.), check out with promos/tips, then watch a **phased delivery** — the courier sits at the restaurant while it "prepares", then moves along the map route only once it's *On the way*, with staged toasts and a named courier. It ends in a **randomized finale** (a portal, geese, escape velocity…), a shareable receipt + card, and a savings **rank-up**.
+
+## Configuration
+
+Optional environment variable:
+
+- `PIXABAY_KEY` — a free [Pixabay API](https://pixabay.com/api/docs/) key. When set, dish/restaurant images are fetched (server-side, cached) from Pixabay; without it, the UI shows designed gradient + icon fallbacks and everything still works. Pixabay's license asks you to cache results and re-host on your own CDN for production.
 
 ## Stack
 
